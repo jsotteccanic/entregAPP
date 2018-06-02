@@ -30,7 +30,7 @@ var filesToCache = [
     '/js/jquery-3.3.1.min.js',
     '/js/logica.js',
     '/js/semantic.min.js',
-    'index.html'
+    '/index.html'
 ];
 self.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');
