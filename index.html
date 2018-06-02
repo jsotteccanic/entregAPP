@@ -14,14 +14,15 @@
 
 <body>
   <div class="ui raised very padded text container segment" style="margin-top: 10%;">
-    <h2 class="ui header">EntregAPP</h2>
+    <h2 class="ui header">EntregAPP <img src="/images/icons/icon-512x512.png" alt=""></h2>    
     <hr>
     <form class="ui form">
       <div class="field">
         <label>Número de ticket</label>
-        <input type="text" name="numTicket" placeholder="Ingrese el número de ticket">
+        <input id="nroEntrega" type="text" name="numTicket" placeholder="Ingrese el número de ticket">
       </div>
       <div class="field">
+        <label>Last Name</label>
         <div>
           <label for="cameraInput" class="ui icon button">
             <i class="camera icon"></i> Verificar               
@@ -30,9 +31,17 @@
           <!-- <input type="file" id="file" > -->
         </div>
       </div>
-      <button class="ui button" type="submit">Entregado</button>
+      <button id="btnEntregado" class="ui button" type="submit">Entregado</button>
     </form>
   </div>
+  <script src="js/logica.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./sw.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
+  </script>
 </body>
 
 </html>
