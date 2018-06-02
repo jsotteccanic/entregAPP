@@ -9,12 +9,17 @@
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/semantic.min.js"></script>
   <link rel="manifest" href="./manifest.json">
+  <meta name="viewport" content="width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="./images/icons/icon-192x192.png">
   <title>EntregAPP</title>
 </head>
 
 <body>
   <div class="ui raised very padded text container segment" style="margin-top: 10%;">
-    <h2 class="ui header">EntregAPP <img src="/images/icons/icon-512x512.png" alt=""></h2>    
+    <h2 class="ui header">EntregAPP
+      <img src="/images/icons/icon-512x512.png" alt="">
+    </h2>
     <hr>
     <form class="ui form">
       <div class="field">
@@ -25,9 +30,9 @@
         <label>Last Name</label>
         <div>
           <label for="cameraInput" class="ui icon button">
-            <i class="camera icon"></i> Verificar               
+            <i class="camera icon"></i> Verificar
           </label>
-            <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" style="display:none">
+          <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" style="display:none">
           <!-- <input type="file" id="file" > -->
         </div>
       </div>
@@ -36,11 +41,11 @@
   </div>
   <script src="js/logica.js"></script>
   <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./sw.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then(function () { console.log('Service Worker Registered'); });
+    }
   </script>
 </body>
 
