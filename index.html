@@ -12,13 +12,21 @@
   <meta name="viewport" content="width=device-width">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="icon" sizes="192x192" href="./images/icons/icon-192x192.png">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Weather PWA">
+    <link rel="apple-touch-icon" href="./images/icons/icon-152x152.png">
+ <!-- Add to home screen for Safari on windows -->
+    <meta name="msapplication-TileImage" content="./images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
   <title>EntregAPP</title>
 </head>
 
 <body>
   <div class="ui raised very padded text container segment" style="margin-top: 10%;">
     <h2 class="ui header">EntregAPP
-      <img src="./images/icons/icon-512x512.png" alt="">
+      <img src="/images/icons/icon-512x512.png" alt="">
     </h2>
     <hr>
     <form class="ui form">
@@ -27,14 +35,12 @@
         <input id="nroEntrega" type="text" name="numTicket" placeholder="Ingrese el número de ticket">
       </div>
       <div class="field">
-        <label>Last Name</label>
         <div>
           <label for="cameraInput" class="ui icon button">
             <i class="camera icon"></i> Verificar
           </label>
           <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" style="display:none">
-          <!-- <input type="file" id="file" > -->
-        </div>
+      </div>
       </div>
       <button id="btnEntregado" class="ui button" >Entregado</button>
     </form>
