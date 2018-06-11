@@ -17,11 +17,14 @@
   <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
   <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
   <meta name="msapplication-TileColor" content="#2F3BA2">
-
+  <!-- firebase -->
+  <script src="js/firebase.js"></script>
+  <!-- titulo -->
   <title>EntregAPP</title>
 </head>
 
 <body>
+  <a href="" id="salir">Salir</a>
   <div class="ui raised very padded text container segment" style="margin-top: 7%;">
     <h2 class="ui header">EntregAPP
       <img src="./images/icons/icon-192x192.png" alt="">
@@ -34,29 +37,40 @@
       </div>
       <div class="field">
         <div>
-          <label for="cameraInput" class="ui icon button">
+          <label for="getImg" class="ui icon button">
             <i class="camera icon"></i> Verificar
           </label>
-          <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" style="display:none">
+          <input type="file" capture="camera" accept="image/*" id="getImg" name="cameraInput" style="display:none">
         </div>
         <!-- contenedor de img -->
         <div class="ui segment">
-            <img id="imgShow" class="ui centered medium image" src="" alt="" style="height: 100px; width: 100px;">
+          <img id="imgShow" class="ui centered medium image" alt="" style="height: 100px; width: 100px;">
         </div>
-        
         <hr>
       </div>
       <button id="btnEntregado" class="fluid ui button">Entregado</button>
     </form>
   </div>
+  <!-- modal login -->
+  <div class="ui modal mini" id="login">
+    <div class="header">
+      iniciar sesión
+    </div>
+    <div class="content">
+      <form class="ui form">
+        <div class="field">
+          <label>Correo</label>
+          <input type="text" id="correo" name="first-name" placeholder="Correo">
+        </div>
+        <div class="field">
+          <label>Contraseña</label>
+          <input type="password" id="password" name="last-name" placeholder="Contraseña">
+        </div>
+        <div class="ui button fluid green" id="btnIniciar">Ingresar</div>
+      </form>
+    </div>
+  </div>
   <script src="js/logica.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('./sw.js')
-        .then(function () { console.log('Service Worker Registered'); });
-    }
-  </script>
 </body>
 
 </html>

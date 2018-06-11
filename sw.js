@@ -28,6 +28,7 @@ var filesToCache = [
     '/images/icons/icon-72x72.png',
     '/images/icons/icon-96x96.png',
     '/js/jquery-3.3.1.min.js',
+    '/js/firebase.js',
     '/js/logica.js',
     '/js/semantic.min.js',
     'index.html'
