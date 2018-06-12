@@ -17,6 +17,7 @@ var config = {
     messagingSenderId: "178726909498"
 };
 firebase.initializeApp(config);
+var storage = firebase.storage();
 
 // Logica de la página
 
@@ -39,8 +40,40 @@ camara.addEventListener('change', (e) => {
 });
 
 btn.addEventListener("click", (e) => {
+    e.preventDefault();
     if (preview.src != "" && nroEntrega.value != "") {
-        alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
+
+        // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
+        // var auth = firebase.auth();
+        var storageRef = firebase.storage().ref();
+        e.preventDefault();
+        var file = document.getElementById('getImg').files[0];
+        var metadata = {
+            'contentType': file.type
+        };
+        // Push to child path.
+        // [START oncomplete]
+        storageRef.child('images/' + file.name).put(file, metadata).then(function (snapshot) {
+            console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+            console.log('File metadata:', snapshot.metadata);
+            // Let's get a download URL for the file.
+            snapshot.ref.getDownloadURL().then(function (url) {
+                console.log('File available at', url);
+                // [START_EXCLUDE]
+               console.log(url);
+               preview.src = "";
+               nroEntrega.value="";
+               alert('Se registro correctamente');
+                // [END_EXCLUDE]
+            });
+        }).catch(function (error) {
+            // [START onfailure]
+            console.error('Upload failed:', error);
+            // [END onfailure]
+        });
+        // [END oncomplete]
+
+
     } else {
         alert("Falta verificar");
         e.preventDefault();
@@ -72,6 +105,7 @@ firebase.auth().onAuthStateChanged(fbu => {
                 closable: false
             })
             .modal('show');
+            // .modal('hide');
 
         console.log("no logueado");
     }
