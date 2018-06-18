@@ -113,6 +113,5 @@ firebase.auth().onAuthStateChanged(fbu => {
 
 document.getElementById('salir').addEventListener('click', (e) => {
     e.preventDefault();
-    debugger;
     firebase.auth().signOut();
 });
