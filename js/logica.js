@@ -42,6 +42,7 @@ camara.addEventListener('change', (e) => {
 btn.addEventListener("click", (e) => {
     e.preventDefault();
     div.className = 'ui segment active dimmer';
+    document.getElementById('getImg').src = "";
     if (preview.src != "" && nroEntrega.value != "") {
 
         // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
