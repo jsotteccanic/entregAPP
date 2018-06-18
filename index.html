@@ -25,7 +25,8 @@
 
 <body>
   <a href="" id="salir">Salir</a>
-  <div class="ui raised very padded text container segment" style="margin-top: 7%;">
+  <div class="ui raised very padded text container segment active" style="margin-top: 7%;">
+    
     <h2 class="ui header">EntregAPP
       <img src="./images/icons/icon-192x192.png" alt="">
     </h2>
@@ -43,7 +44,8 @@
           <input type="file" capture="camera" accept="image/*" id="getImg" name="cameraInput" style="display:none">
         </div>
         <!-- contenedor de img -->
-        <div class="ui segment">
+        <div class="ui segment" id="imgContainer">
+            <div class='ui text loader'>Loading</div>
           <img id="imgShow" class="ui centered medium image" alt="" style="height: 100px; width: 100px;">
         </div>
         <hr>

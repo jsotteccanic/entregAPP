@@ -25,7 +25,7 @@ var btn = document.getElementById('btnEntregado');
 var nroEntrega = document.getElementById('nroEntrega');
 var camara = document.getElementById('getImg');
 var preview = document.getElementById('imgShow');
-
+var div = document.getElementById('imgContainer');
 camara.addEventListener('change', (e) => {
     let file = e.target.files[0];
     var reader = new FileReader();
@@ -54,15 +54,19 @@ btn.addEventListener("click", (e) => {
         // Push to child path.
         // [START oncomplete]
         storageRef.child('images/' + file.name).put(file, metadata).then(function (snapshot) {
+            
+            div.className = 'ui segment active dimmer';
             console.log('Uploaded', snapshot.totalBytes, 'bytes.');
             console.log('File metadata:', snapshot.metadata);
+            //  "<div class='ui text loader'>Loading</div>"
             // Let's get a download URL for the file.
             snapshot.ref.getDownloadURL().then(function (url) {
                 console.log('File available at', url);
+                div.className = 'ui segment';
                 // [START_EXCLUDE]                
-               document.getElementById('getImg').src = "";
-               nroEntrega.value="";
-               alert('Se registro correctamente');
+                document.getElementById('getImg').src = "";
+                nroEntrega.value = "";
+                alert('Se registro correctamente');
                 // [END_EXCLUDE]
             });
         }).catch(function (error) {
@@ -104,7 +108,7 @@ firebase.auth().onAuthStateChanged(fbu => {
                 closable: false
             })
             .modal('show');
-            // .modal('hide');
+        // .modal('hide');
 
         console.log("no logueado");
     }
