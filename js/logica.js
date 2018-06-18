@@ -41,6 +41,7 @@ camara.addEventListener('change', (e) => {
 
 btn.addEventListener("click", (e) => {
     e.preventDefault();
+    div.className = 'ui segment active dimmer';
     if (preview.src != "" && nroEntrega.value != "") {
 
         // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
@@ -55,7 +56,7 @@ btn.addEventListener("click", (e) => {
         // [START oncomplete]
         storageRef.child('images/' + file.name).put(file, metadata).then(function (snapshot) {
             
-            div.className = 'ui segment active dimmer';
+            
             console.log('Uploaded', snapshot.totalBytes, 'bytes.');
             console.log('File metadata:', snapshot.metadata);
             //  "<div class='ui text loader'>Loading</div>"
