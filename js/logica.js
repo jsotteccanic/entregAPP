@@ -59,9 +59,8 @@ btn.addEventListener("click", (e) => {
             // Let's get a download URL for the file.
             snapshot.ref.getDownloadURL().then(function (url) {
                 console.log('File available at', url);
-                // [START_EXCLUDE]
-               console.log(url);
-               preview.src = "";
+                // [START_EXCLUDE]                
+               document.getElementById('getImg').src = "";
                nroEntrega.value="";
                alert('Se registro correctamente');
                 // [END_EXCLUDE]
