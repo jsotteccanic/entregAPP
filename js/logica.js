@@ -42,7 +42,7 @@ camara.addEventListener('change', (e) => {
 btn.addEventListener("click", (e) => {
     e.preventDefault();
     div.className = 'ui segment active dimmer';
-    document.getElementById('getImg').src = "";
+    document.getElementById('imgShow').src = "";
     if (preview.src != "" && nroEntrega.value != "") {
 
         // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
@@ -66,7 +66,7 @@ btn.addEventListener("click", (e) => {
                 console.log('File available at', url);
                 div.className = 'ui segment';
                 // [START_EXCLUDE]                
-                document.getElementById('getImg').src = "";
+                document.getElementById('imgShow').src = "";
                 nroEntrega.value = "";
                 alert('Se registro correctamente');
                 // [END_EXCLUDE]
