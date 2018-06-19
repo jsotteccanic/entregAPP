@@ -8,7 +8,7 @@ var filesToCache = [
     '/css/themes/default/assets/fonts/brand-icons.woff',
     '/css/themes/default/assets/fonts/brand-icons.woff2',
     '/css/themes/default/assets/fonts/icons.eot',
-    '/css/themes/default/assets/fonts/icons.otf',
+    // '/css/themes/default/assets/fonts/icons.otf',
     '/css/themes/default/assets/fonts/icons.svg',
     '/css/themes/default/assets/fonts/icons.ttf',
     '/css/themes/default/assets/fonts/icons.woff',
