@@ -19,19 +19,19 @@ var filesToCache = [
     '/css/themes/default/assets/fonts/outline-icons.woff',
     '/css/themes/default/assets/fonts/outline-icons.woff2',
     '/css/themes/default/assets/images/flags.png',
+    '/images/icons/icon-72x72.png',
+    '/images/icons/icon-96x96.png',
     '/images/icons/icon-128x128.png',
     '/images/icons/icon-144x144.png',
     '/images/icons/icon-152x152.png',
     '/images/icons/icon-192x192.png',
     '/images/icons/icon-384x384.png',
     '/images/icons/icon-512x512.png',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
     '/js/jquery-3.3.1.min.js',
     '/js/firebase.js',
     '/js/logica.js',
     '/js/semantic.min.js',
-    '/index.html'
+    './index.html'
 ];
 self.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');
