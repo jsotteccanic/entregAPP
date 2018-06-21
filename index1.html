@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/semantic.min.js"></script>
+  <script src="js/firebase.js"></script>
+  <link rel="stylesheet" href="css/semantic.min.css">
+</head>
+
+<body>
+  <div class="ui inverted menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        <img class="logo" src="images/icons/icon-152x152.png"> EntregAPP
+      </a>
+      <div class="ui simple dropdown item">
+        Opciones
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item" href="#">Link Item</a>
+          <a class="item" href="#">Link Item</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui container">
+    <div class="ui one column centered aligned stackable grid">
+      <div class="eight wide column">
+        <h1 class="ui dividing header">Registrar Entrega:</h1>
+        <form class="ui form">
+          <div class="field">
+            <label for='destinatario'>Destinatario</label>
+            <input type="text" name="destinatario" id='destinatario' placeholder="Ingrese nombre del destinatario">
+          </div>
+          <div class="field">
+            <label for='destino'>Destino</label>
+            <select id='destino' name='destino' placeholder="Seleccione">
+              <option value="">Selecciones</option>
+              <option value="Lima">Lima</option>
+              <option value="Trujillo">Trujillo</option>
+              <option value="Piura">Piura</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="documento">Documento</label>
+            <input type="text" name='documento' id="documento" placeholder="Ingrese nombre del documento">
+          </div>
+          <div class="field">
+            <label for="fechaRecojo">Fecha Recojo</label>
+            <input type="date" name="fechaRecojo" id="fechaRecojo" placeholder="Fecha de recojo">
+          </div>
+          <div class="field">
+            <label for="guiaRemision">Guia de remisión</label>
+            <input type="text" name="guiaRemision" id="guiaRemision" placeholder="Guia de remision">
+          </div>
+          <div class="field">
+            <label for='asignar'>Asignar</label>
+            <select id='asignar' name='asignar' placeholder="Seleccione">
+            </select>
+          </div>
+          <button class="ui button green">Guardar</button>
+        </form>
+      </div>
+      <!-- <div class="column">
+        <table class="ui table">
+          <thead>
+            <th>Nro</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Carlos</td>
+              <td>Pedro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -18,7 +18,32 @@ var config = {
 };
 firebase.initializeApp(config);
 var storage = firebase.storage();
+var fire = firebase.firestore();
+// agregar data
 
+fire.collection("ticket").doc().set({ 
+    destinatario: "MANGANO", 
+    destino: "Trujillo",
+    documento: "PRESTAMOS DE MAQ",
+    fechaEntrega: new Date().toISOString().substring(0,10),
+    fechaRecojo: new Date().toISOString().substring(0,10),
+    guiaRemision: "000-015",
+    recibido: true, 
+    url: "null" })
+    .then(function () {
+        console.log("Document successfully written!");
+    })
+    .catch(function (error) {
+        console.error("Error writing document: ", error);
+    });
+
+
+// leer data
+fire.collection("ticket").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(JSON.stringify(doc.data()));
+    });
+});
 // Logica de la página
 
 var btn = document.getElementById('btnEntregado');
@@ -43,7 +68,7 @@ btn.addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById('imgShow').src = "";
     div.className = 'ui segment active dimmer';
-   
+
     if (preview.src != "" && nroEntrega.value != "") {
 
         // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
@@ -57,14 +82,14 @@ btn.addEventListener("click", (e) => {
         // Push to child path.
         // [START oncomplete]
         storageRef.child('images/' + file.name).put(file, metadata).then(function (snapshot) {
-            
-            
-            console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-            console.log('File metadata:', snapshot.metadata);
+
+
+            // console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+            // console.log('File metadata:', snapshot.metadata);
             //  "<div class='ui text loader'>Loading</div>"
             // Let's get a download URL for the file.
             snapshot.ref.getDownloadURL().then(function (url) {
-                console.log('File available at', url);
+                // console.log('File available at', url);
                 div.className = 'ui segment';
                 // [START_EXCLUDE]                
                 document.getElementById('imgShow').src = "";
@@ -102,7 +127,6 @@ document.getElementById('btnIniciar').addEventListener('click', (e) => {
 
 firebase.auth().onAuthStateChanged(fbu => {
     if (fbu) {
-        console.log(fbu);
         $('#login').modal('hide');
     } else {
         $('#login')
