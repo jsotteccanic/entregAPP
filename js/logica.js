@@ -21,15 +21,16 @@ var storage = firebase.storage();
 var fire = firebase.firestore();
 // agregar data
 
-fire.collection("ticket").doc().set({ 
-    destinatario: "MANGANO", 
+fire.collection("ticket").doc().set({
+    destinatario: "MANGANO",
     destino: "Trujillo",
     documento: "PRESTAMOS DE MAQ",
-    fechaEntrega: new Date().toISOString().substring(0,10),
-    fechaRecojo: new Date().toISOString().substring(0,10),
+    fechaEntrega: new Date().toISOString().substring(0, 10),
+    fechaRecojo: new Date().toISOString().substring(0, 10),
     guiaRemision: "000-015",
-    recibido: true, 
-    url: "null" })
+    recibido: true,
+    url: "null"
+})
     .then(function () {
         console.log("Document successfully written!");
     })
