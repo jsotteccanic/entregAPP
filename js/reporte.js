@@ -11,10 +11,12 @@ firebase.initializeApp(config);
 var fire = firebase.firestore();
 ;
 fire.collection("ticket").onSnapshot(function(querySnapshot) {  
-    let tbody = document.getElementById('tbReporte');     
+    let tbody = document.getElementById('tbReporte');  
+        tbody.innerHTML ='';   
         querySnapshot.forEach(function(doc) {
             let tr = document.createElement('tr');
             tr.innerHTML = `
+            <td>${doc.data().ordenServicio}</td>
             <td>${doc.data().documento}</td>
             <td>${doc.data().destinatario}</td>
             <td>${doc.data().destino}</td>

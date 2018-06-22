@@ -19,27 +19,18 @@ var config = {
 firebase.initializeApp(config);
 var storage = firebase.storage();
 var fire = firebase.firestore();
-// agregar data
-
-fire.collection("ticket").doc().set({
-    destinatario: "MANGANO",
-    destino: "Trujillo",
-    documento: "PRESTAMOS DE MAQ",
-    fechaEntrega: new Date().toISOString().substring(0, 10),
-    fechaRecojo: new Date().toISOString().substring(0, 10),
-    guiaRemision: "000-015",
-    recibido: true,
-    url: "null"
-})
-    .then(function () {
-        console.log("Document successfully written!");
-    })
-    .catch(function (error) {
-        console.error("Error writing document: ", error);
-    });
-
 
 // leer data
+fire.collection("ticket").get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        opt = document.createElement('option');
+        opt.value = doc.data().correo;
+        opt.innerText = doc.data().nombres;
+        select.appendChild(opt);
+    });
+});
+
 fire.collection("ticket").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         console.log(JSON.stringify(doc.data()));

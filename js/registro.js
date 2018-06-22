@@ -9,19 +9,13 @@ var config = {
 firebase.initializeApp(config);
 
 var fire = firebase.firestore();
-fire.collection("ticket").onSnapshot(function(querySnapshot) {
-        
-        querySnapshot.forEach(function(doc) {
-            console.log(doc.data());
-        });
-        
-    });
+
 // get datos
 obtenerPersonal();
 function obtenerPersonal() {
     let select = document.getElementById('asignar');
-    fire.collection("personal").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+    fire.collection("personal").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             opt = document.createElement('option');
             opt.value = doc.data().correo;
@@ -40,14 +34,14 @@ function datosFormulario() {
         fechaRecojo: null,
         guiaRemision: document.getElementById('guiaRemision').value,
         recibido: null,
-        encargado: document.getElementById('asignar'),
+        encargado: document.getElementById('asignar').value,
         url: null,
-        entregado:false
+        ordenServicio: document.getElementById('ordenServicio').value,
+        entregado: false
     }
 }
 function guardar(e) {
     e.preventDefault();
-    debugger;
     fire.collection("ticket").doc().set(datosFormulario())
         .then(function () {
             alert("Se registro correctamente");
@@ -55,6 +49,7 @@ function guardar(e) {
         })
         .catch(function (error) {
             alert("Error al guardar la información");
+            limpiar();
         });
 }
 
@@ -65,4 +60,5 @@ function limpiar() {
     document.getElementById('fechaRecojo').value = '';
     document.getElementById('guiaRemision').value = '';
     document.getElementById('asignar').selectedIndex = 0;
+    document.getElementById('ordenServicio').value = '';
 }
