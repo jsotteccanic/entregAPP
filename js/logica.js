@@ -52,6 +52,7 @@ firebase.auth().onAuthStateChanged(fbu => {
 function leerData() {
     fire.collection("ticket").get().then(function (querySnapshot) {
         let select = document.getElementById('nroEntrega');
+        select.innerHTML = '';
         let opt = document.createElement('option');
         opt.innerText = "Seleccione...";
         select.appendChild(opt);
