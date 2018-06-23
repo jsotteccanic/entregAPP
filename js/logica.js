@@ -1,6 +1,4 @@
 'use strict';
-// login
-
 // Instalar service worker
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
@@ -16,28 +14,61 @@ var config = {
     storageBucket: "entregapp-a840c.appspot.com",
     messagingSenderId: "178726909498"
 };
+
 firebase.initializeApp(config);
-var storage = firebase.storage();
-var fire = firebase.firestore();
+var storage = firebase.storage();           // Elmacenamiento de contenido
+var fire = firebase.firestore();            // Base de datos
+var session = null;
+//Session
+document.getElementById('btnIniciar').addEventListener('click', (e) => {
+    e.preventDefault();
+    let correo = document.getElementById('correo').value;
+    let pass = document.getElementById('password').value;
+    let auth = firebase.auth();
+
+    const promise = auth.signInWithEmailAndPassword(correo, pass);
+    promise.catch(e => console.log(e.message));
+});
+document.getElementById('nroEntrega').addEventListener("change", (e) => {
+    document.getElementById('direccion').innerText = e.target.options[e.target.selectedIndex].dataset.destino;
+});
+firebase.auth().onAuthStateChanged(fbu => {
+    if (fbu) {
+        session = fbu;
+        $('#login').modal('hide');
+        leerData();
+    } else {
+        $('#login')
+            .modal({
+                blurring: true,
+                closable: false
+            })
+            .modal('show');
+        console.log("no logueado");
+    }
+});
 
 // leer data
-fire.collection("ticket").get().then(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        opt = document.createElement('option');
-        opt.value = doc.data().correo;
-        opt.innerText = doc.data().nombres;
+function leerData() {
+    fire.collection("ticket").get().then(function (querySnapshot) {
+        let select = document.getElementById('nroEntrega');
+        let opt = document.createElement('option');
+        opt.innerText = "Seleccione...";
         select.appendChild(opt);
+        querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            if (session.email == doc.data().encargado && doc.data().entregado == false) {
+                let opt = document.createElement('option');
+                opt.value = doc.id;
+                opt.dataset.destino = doc.data().destino;
+                opt.innerText = doc.data().ordenServicio;
+                select.appendChild(opt);
+            }
+        });
     });
-});
+}
 
-fire.collection("ticket").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        console.log(JSON.stringify(doc.data()));
-    });
-});
 // Logica de la página
-
 var btn = document.getElementById('btnEntregado');
 var nroEntrega = document.getElementById('nroEntrega');
 var camara = document.getElementById('getImg');
@@ -60,79 +91,53 @@ btn.addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById('imgShow').src = "";
     div.className = 'ui segment active dimmer';
-
     if (preview.src != "" && nroEntrega.value != "") {
-
-        // alert("se entregó satisfactoriamente el paquete nro :" + nroEntrega.value);
-        // var auth = firebase.auth();
         var storageRef = firebase.storage().ref();
         e.preventDefault();
         var file = document.getElementById('getImg').files[0];
         var metadata = {
             'contentType': file.type
         };
-        // Push to child path.
-        // [START oncomplete]
+
         storageRef.child('images/' + file.name).put(file, metadata).then(function (snapshot) {
-
-
-            // console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-            // console.log('File metadata:', snapshot.metadata);
-            //  "<div class='ui text loader'>Loading</div>"
-            // Let's get a download URL for the file.
             snapshot.ref.getDownloadURL().then(function (url) {
-                // console.log('File available at', url);
                 div.className = 'ui segment';
-                // [START_EXCLUDE]                
                 document.getElementById('imgShow').src = "";
-                nroEntrega.value = "";
-                alert('Se registro correctamente');
-                // [END_EXCLUDE]
+                if (actualizarRegistro(url)) {
+                    alert('Se registro correctamente');
+                    nroEntrega.value = "";
+                }
             });
         }).catch(function (error) {
-            // [START onfailure]
             console.error('Upload failed:', error);
-            // [END onfailure]
         });
-        // [END oncomplete]
-
-
     } else {
         alert("Falta verificar");
         e.preventDefault();
         nroEntrega.focus();
     }
-
 });
 
-document.getElementById('btnIniciar').addEventListener('click', (e) => {
-    e.preventDefault();
-    let correo = document.getElementById('correo').value;
-    let pass = document.getElementById('password').value;
-    let auth = firebase.auth();
+function actualizarRegistro(_url, ) {
 
-    const promise = auth.signInWithEmailAndPassword(correo, pass);
-    promise.catch(e => console.log(e.message));
-
-
-});
-
-firebase.auth().onAuthStateChanged(fbu => {
-    if (fbu) {
-        $('#login').modal('hide');
-    } else {
-        $('#login')
-            .modal({
-                blurring: true,
-                closable: false
-            })
-            .modal('show');
-        // .modal('hide');
-
-        console.log("no logueado");
-    }
-});
-
+    // Set the "capital" field of the city 'DC'
+    debugger;
+    let _id = document.getElementById('nroEntrega').value;
+    return fire.collection("ticket").doc(_id).update({
+        url: _url,
+        fechaRecojo: new Date().toISOString().slice(0, 10),
+        entregado: true
+    })
+        .then(function () {
+            console.log("Document successfully updated!");
+            // return true;
+        })
+        .catch(function (error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+            // return false;
+        });
+}
 document.getElementById('salir').addEventListener('click', (e) => {
     e.preventDefault();
     firebase.auth().signOut();

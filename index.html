@@ -35,8 +35,12 @@
     <form class="ui form">
       <div class="field">
         <label>Número de ticket</label>
-        <input id="nroEntrega" type="text" name="numTicket" placeholder="Ingrese el número de ticket">
+        <select id="nroEntrega" name="numTicket"></select>
       </div>
+      <p>
+        <span id="direccion"></span>
+      </p>
+
       <div class="field">
         <div>
           <label for="getImg" class="ui icon button">
@@ -46,7 +50,7 @@
         </div>
         <!-- contenedor de img -->
         <div class="ui segment" id="imgContainer">
-            <div class='ui text loader'>Cargando</div>
+          <div class='ui text loader'>Cargando</div>
           <img id="imgShow" class="ui centered medium image" alt="" style="height: 100px; width: 100px;">
         </div>
         <hr>

@@ -33,7 +33,7 @@ function datosFormulario() {
         fechaEntrega: document.getElementById('fechaRecojo').value,
         fechaRecojo: null,
         guiaRemision: document.getElementById('guiaRemision').value,
-        recibido: null,
+        recibido: false,
         encargado: document.getElementById('asignar').value,
         url: null,
         ordenServicio: document.getElementById('ordenServicio').value,

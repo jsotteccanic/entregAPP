@@ -23,7 +23,7 @@ fire.collection("ticket").onSnapshot(function(querySnapshot) {
             <td>${doc.data().fechaEntrega}</td>
             <td>${doc.data().fechaRecojo}</td>
             <td>${doc.data().guiaRemision}</td>
-            <td>${doc.data().recibido}</td>
+            <td>${doc.data().entregado}</td>
             <td><img src='${doc.data().url}' style='heigh:20px; width:20px;'/></td>`
             console.log(doc.data());
             tbody.appendChild(tr);
