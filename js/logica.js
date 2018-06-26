@@ -34,6 +34,7 @@ document.getElementById('nroEntrega').addEventListener("change", (e) => {
     document.getElementById('direccion').innerText = e.target.options[e.target.selectedIndex].dataset.destino;
 });
 function comprobarSession() {
+    session = null;
     firebase.auth().onAuthStateChanged(fbu => {
         if (fbu) {
             session = fbu;
