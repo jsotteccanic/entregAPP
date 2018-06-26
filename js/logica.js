@@ -39,7 +39,7 @@ function comprobarSession() {
             session = fbu;
 
             if (session.email == 'auditor@minag.com') {
-                document.location.href = "/cliente.html";
+                document.location.href = "./cliente.html";
             } else {
                 $('#login').modal('hide');
                 leerData();
