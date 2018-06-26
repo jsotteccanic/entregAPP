@@ -29,6 +29,8 @@ fire.collection("ticket").onSnapshot(function(querySnapshot) {
             tbody.appendChild(tr);
         });
         
+            $('#example').DataTable();
+        
     });
 // get datos
 function cerrarSessionCliente(e){
@@ -36,3 +38,6 @@ function cerrarSessionCliente(e){
     firebase.auth().signOut();
     document.location.href="./index.html";
 }
+
+$('.ui.dropdown')
+  .dropdown();
