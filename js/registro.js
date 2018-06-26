@@ -14,12 +14,17 @@ var fire = firebase.firestore();
 obtenerPersonal();
 function obtenerPersonal() {
     let select = document.getElementById('asignar');
+    select.innerHTML='';
+    opt = document.createElement('option');
+    opt.value = 0;
+    opt.innerText = 'Seleccione';
+    select.appendChild(opt);
     fire.collection("personal").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             opt = document.createElement('option');
             opt.value = doc.data().correo;
-            opt.innerText = doc.data().nombres;
+            opt.innerText = doc.data().nombres + " " + doc.data().apellidos;
             select.appendChild(opt);
         });
     });
@@ -55,7 +60,7 @@ function guardar(e) {
 
 function limpiar() {
     document.getElementById('destinatario').value = '';
-    document.getElementById('destino').selectedIndex = 0;
+    document.getElementById('destino').value = '';
     document.getElementById('documento').value = '';
     document.getElementById('fechaRecojo').value = '';
     document.getElementById('guiaRemision').value = '';
