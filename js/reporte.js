@@ -31,3 +31,8 @@ fire.collection("ticket").onSnapshot(function(querySnapshot) {
         
     });
 // get datos
+function cerrarSessionCliente(e){
+    e.preventDefault();
+    firebase.auth().signOut();
+    document.location.href="./index.html";
+}

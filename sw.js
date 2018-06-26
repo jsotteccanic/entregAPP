@@ -31,7 +31,10 @@ var filesToCache = [
     '/js/firebase.js',
     '/js/logica.js',
     '/js/semantic.min.js',
-    './index.html'
+    './index.html',
+    './cliente.html',
+    './registro.html',
+    './reporte.html',
 ];
 self.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');

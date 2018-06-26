@@ -28,29 +28,33 @@ document.getElementById('btnIniciar').addEventListener('click', (e) => {
 
     const promise = auth.signInWithEmailAndPassword(correo, pass);
     promise.catch(e => console.log(e.message));
+    comprobarSession();
 });
 document.getElementById('nroEntrega').addEventListener("change", (e) => {
     document.getElementById('direccion').innerText = e.target.options[e.target.selectedIndex].dataset.destino;
 });
-firebase.auth().onAuthStateChanged(fbu => {
-    if (fbu) {
-        session = fbu;
-        $('#login').modal('hide');
-        if(session.tipo == 'Cliente'){
-            document.location.href="./cliente.html";
-        }else{
-            leerData();
+function comprobarSession() {
+    firebase.auth().onAuthStateChanged(fbu => {
+        if (fbu) {
+            session = fbu;
+
+            if (session.email == 'auditor@minag.com') {
+                document.location.href = "/cliente.html";
+            } else {
+                $('#login').modal('hide');
+                leerData();
+            }
+        } else {
+            $('#login')
+                .modal({
+                    blurring: true,
+                    closable: false
+                })
+                .modal('show');
         }
-        
-    } else {
-        $('#login')
-            .modal({
-                blurring: true,
-                closable: false
-            })
-            .modal('show');
-    }
-});
+    });
+}
+
 
 // leer data
 function leerData() {
@@ -126,7 +130,7 @@ btn.addEventListener("click", (e) => {
 function actualizarRegistro(_url, ) {
 
     // Set the "capital" field of the city 'DC'
-    debugger;
+
     let _id = document.getElementById('nroEntrega').value;
     return fire.collection("ticket").doc(_id).update({
         url: _url,
@@ -147,3 +151,20 @@ document.getElementById('salir').addEventListener('click', (e) => {
     e.preventDefault();
     firebase.auth().signOut();
 });
+
+// function obtenerDatosSession(correo) {
+//     var valor = false;
+//     fire.collection("personal").get().then(function (querySnapshot) {
+//         querySnapshot.forEach(function (doc) {
+//             console.log(doc.data().tipo + "|" + doc.data().correo);
+//             console.log('Cliente' + "|" + document.getElementById('correo').value);
+//             if (doc.data().tipo == 'Cliente' && doc.data().correo == correo) {
+//                 valor == true;
+//                     document.location.href = "./cliente.html";
+//             }
+//         });
+//     });
+
+// }
+//Comprobar session
+comprobarSession();
