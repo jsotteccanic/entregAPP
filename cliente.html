@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/semantic.min.js"></script>
+    <script src="js/firebase.js"></script>
+    <link rel="stylesheet" href="css/semantic.min.css">
+</head>
+
+<body>
+    <div class="ui inverted menu">
+        <div class="ui container">
+            <a href="#" class="header item">
+                <img class="logo" src="images/icons/icon-152x152.png"> EntregAPP
+            </a>
+            REPORTE DE ENTREGAS
+            <!-- <div class="ui simple dropdown item">
+                Menu
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="./registro.html">Registrar</a>
+                    <a class="item" href="./reporte.html">Reporte</a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui one column centered aligned stackable grid">
+            <div class="column">
+
+                <h1 class="ui dividing header">Registro:</h1>
+                <table class="ui table">
+                    <thead>
+                        <th>O.S</th>
+                        <th>DOC</th>
+                        <th>DESTINATARIO</th>
+                        <th>DESTINO</th>
+                        <th>FECHA ENT</th>
+                        <th>FECHA RECOJ</th>
+                        <th>GUIA REMI</th>
+                        <th>ENTREGADO</th>
+                        <th>FIRMA</th>
+                    </thead>
+                    <tbody id='tbReporte'>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/reporte.js"></script>
+</body>
+
+</html>

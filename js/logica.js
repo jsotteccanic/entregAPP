@@ -36,7 +36,12 @@ firebase.auth().onAuthStateChanged(fbu => {
     if (fbu) {
         session = fbu;
         $('#login').modal('hide');
-        leerData();
+        if(session.tipo == 'Cliente'){
+            document.location.href="./cliente.html";
+        }else{
+            leerData();
+        }
+        
     } else {
         $('#login')
             .modal({
@@ -44,7 +49,6 @@ firebase.auth().onAuthStateChanged(fbu => {
                 closable: false
             })
             .modal('show');
-        console.log("no logueado");
     }
 });
 
